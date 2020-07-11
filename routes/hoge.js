@@ -11,7 +11,7 @@ router.get('/:name', (req, res, next) => {
       const temp = execSync('vcgencmd measure_temp | sed -e "s/temp=//" | sed -z "s/\'C\\n//"');
       console.log(`response: ${temp.toString()}`);
       res.json({
-        temperature: temp.toString()
+        result: temp.toString()
       })
     }
     else if (data.name === 'pressure')
@@ -19,13 +19,13 @@ router.get('/:name', (req, res, next) => {
       const pressure = execSync('python ./public/pythonscripts/MPL3115A2.py | sed -z "s/hPa\\n//"');
       console.log(`response: ${pressure.toString()}`);
       res.json({
-        pressure: pressure.toString()
+        result: pressure.toString()
       })
     }
     else {
       console.log(`response: ${data.name}`);
       res.json({
-        name: data.name
+        result: data.name
       })
     }
   });
